@@ -1,16 +1,16 @@
 (function(){
 
-var TEXT_LOADING = 'Loading...\n\n历史的行程: %s %';
-var TEXT_SCORE = '+ %s s';
-var TEXT_GAME_OVER = '我为长者续命%s秒\n志己的生命减少%s秒\n而且这个效率efficiency: %s%';
-var TEXT_TRY_AGAIN = '重新续';
-var TEXT_PLAY_BGM = '请州长夫人演唱';
-var TEXT_TIME_ELAPSED = '- %s s';
-var TEXT_TOTAL_TIME_ELAPSED = '累计被续 %s 秒';
-var TEXT_TINY_TIPS = '[微小的提示]\n为了获得坠好的游戏体验，请：\n打开音量\n穿上红色的衣服';
-var TEXT_FONT = '"Segoe UI", "Microsoft YaHei", 宋体, sans-serif'; // 插入宋体
+    var TEXT_LOADING = 'Loading...\n\n你已经经历了 %s 难';
+    var TEXT_SCORE = '+ %s 次';
+    var TEXT_GAME_OVER = '我为六爷谢罪%s次\n细说不是胡说\n改变不是乱编';
+    var TEXT_TRY_AGAIN = '按6谢罪';
+    var TEXT_PLAY_BGM = '路在何方';
+    var TEXT_TIME_ELAPSED = '';
+    var TEXT_TOTAL_TIME_ELAPSED = '';
+    var TEXT_TINY_TIPS = '[微小的提示]\n为了继续弘扬中国文化，请：\n打开音量\n穿上红色的衣服';
+    var TEXT_FONT = '"Segoe UI", "Microsoft YaHei", 宋体, sans-serif'; // 插入宋体
 
-var _gravity = 40,
+    var _gravity = 40,
   _speed = 390,
   _flap = 620,
   _spawnRate = 1 / 1.2,
@@ -134,7 +134,7 @@ function preload() {
   initLoadingText();
   _game.load.onFileComplete.add(showLoadingText);
 
-  _game.load.spritesheet('frog', _baseUrl + 'images/frog.png', 80, 64);
+  _game.load.spritesheet('frog', _baseUrl + 'images/sir six.png', 80, 64);
   _game.load.spritesheet('clouds', _baseUrl + 'images/clouds.png', 128, 64);
 
   _game.load.image('pipe', _baseUrl + 'images/pipe.png');
@@ -302,7 +302,7 @@ function initSounds() {
 
 function randomPlaySound(list, count) {
   var sound;
-  if (count == 1) {
+  if (count === 1) {
     sound = list[0];
     sound.play();
   } else if (count > 1) {
@@ -569,7 +569,7 @@ function flap() {
 function checkKeyCode(input, a) {
   if (!input || !a)
     return;
-  return input == a[0] || input == a[1];
+  return input === a[0] || input === a[1];
 }
 
 function onKeyDown(e) { }
@@ -628,7 +628,7 @@ function create() {
 
 function setTimeElapsed() {
   var a = Math.floor(_game.time.elapsedSecondsSince(_startTime)) + 1;
-  if (_timeElapsed != a) {
+  if (_timeElapsed !== a) {
     _timeElapsed = a;
     _timeElapsedText.setText(TEXT_TIME_ELAPSED.replace('%s', _timeElapsed));
   }
