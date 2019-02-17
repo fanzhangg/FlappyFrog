@@ -2,7 +2,7 @@
 
     var TEXT_LOADING = 'Loading...\n\n你已经经历了 %s 难';
     var TEXT_SCORE = '+ %s 次';
-    var TEXT_GAME_OVER = '我为六爷谢罪%s次\n细说不是胡说\n改变不是乱编';
+    var TEXT_GAME_OVER = '我为六爷谢罪%s次\n戏说不是胡说\n改变不是乱编';
     var TEXT_TRY_AGAIN = '按6谢罪';
     var TEXT_PLAY_BGM = '路在何方';
     var TEXT_TIME_ELAPSED = '';
@@ -30,7 +30,7 @@ var _scoreSounds = [],
 
 var _currentScoreSound;
 
-var _bgColor = 0xDDEEFF,
+var _bgColor = 0x36868c5,
   _background;
 
 var _pipes,
@@ -114,7 +114,7 @@ function initLoadingText() {
     '',
     {
       font: '24px ' + TEXT_FONT,
-      fill: '#f00',
+      fill: '#fff',
       align: 'center'
     }
   );
@@ -134,11 +134,13 @@ function preload() {
   initLoadingText();
   _game.load.onFileComplete.add(showLoadingText);
 
-  _game.load.spritesheet('frog', _baseUrl + 'images/sir six.png', 80, 64);
+  _game.load.spritesheet('frog', _baseUrl + 'images/monkey.png', 150, 125);
   _game.load.spritesheet('clouds', _baseUrl + 'images/clouds.png', 128, 64);
 
-  _game.load.image('pipe', _baseUrl + 'images/pipe.png');
+  _game.load.image('pipe', _baseUrl + 'images/stick.png');
   _game.load.image('ground', _baseUrl + 'images/ground.png');
+  // load background image
+  _game.load.image('background', _baseUrl + 'images/mountain.jpg');
 
   loadAudio('bgm', _baseUrl + 'sounds/bgm');
   loadAudio('flap', _baseUrl + 'sounds/flap');
@@ -225,10 +227,12 @@ function stopPipes() {
 }
 
 function initBackground() {
-  _background = _game.add.graphics(0, 0);
-  _background.beginFill(_bgColor, 1);
-  _background.drawRect(0, 0, _game.world.width, _game.world.height);
-  _background.endFill();
+  // add background to the game
+  _background = _game.add.tileSprite(0, 0, _game.world.width, _game.world.height, 'background')
+  _background.anchor.setTo(0.5, 0.5);
+  // _background.beginFill(_bgColor, 1);
+  // _background.drawRect(0, 0, _game.world.width, _game.world.height);
+  // _background.endFill();
 }
 
 function initFrog() {
