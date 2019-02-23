@@ -29,12 +29,9 @@
         <script src="phaser.min.js"></script>
         <script src="main.js"></script>
         <script>
-            initGame({
-                feedback: '胡说乱编',
-                feedbackFunc: function() {
-                    window.open('https://github.com/tusenpo/FlappyFrog/issues');
-                },
-                parent: document.querySelector('#screen')
+            initGame(
+                {
+                    parent: document.querySelector('#screen')
             });
         </script>
     </body>

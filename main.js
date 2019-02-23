@@ -1,10 +1,10 @@
 (function(){
 
     var TEXT_LOADING = 'Loading...\n\n你已经经历了 %s 难';
-    var TEXT_SCORE = '+ %s 次';
+  var TEXT_SCORE = '+ %s ';
     var TEXT_GAME_OVER = '我为六爷谢罪%s次\n戏说不是胡说\n改变不是乱编';
     var TEXT_TRY_AGAIN = '按6谢罪';
-    var TEXT_PLAY_BGM = '路在何方';
+  var TEXT_PLAY_BGM = '▶︎ PLAY ';
     var TEXT_TIME_ELAPSED = '';
     var TEXT_TOTAL_TIME_ELAPSED = '';
     var TEXT_TINY_TIPS = '[微小的提示]\n为了继续弘扬中国文化，请：\n打开音量\n穿上红色的衣服';
@@ -134,11 +134,11 @@ function preload() {
   initLoadingText();
   _game.load.onFileComplete.add(showLoadingText);
 
-  _game.load.spritesheet('frog', _baseUrl + 'images/monkey.png', 150, 125);
+  _game.load.spritesheet('frog', _baseUrl + 'images/monkey.png', 100, 83);
   _game.load.spritesheet('clouds', _baseUrl + 'images/clouds.png', 128, 64);
 
   _game.load.image('pipe', _baseUrl + 'images/stick.png');
-  _game.load.image('ground', _baseUrl + 'images/ground.png');
+  //_game.load.image('ground', _baseUrl + 'images/ground.png');
   // load background image
   _game.load.image('background', _baseUrl + 'images/mountain.jpg');
 
@@ -249,10 +249,10 @@ function resetFrog() {
   _frog.reset(_game.world.width / 4, _game.world.height / 2);
 }
 
-function initGround() {
-  _ground = _game.add.tileSprite(0, _game.world.height - 32, _game.world.width, 32, 'ground');
-  _ground.tileScale.setTo(2, 2);
-}
+// function initGround() {
+//   _ground = _game.add.tileSprite(0, _game.world.height - 32, _game.world.width, 32, 'ground');
+//   _ground.tileScale.setTo(2, 2);
+// }
 
 function spawnCloud() {
   _cloudsTimer.stop();
@@ -359,9 +359,9 @@ function updatePipes() {
   _pipesTimer.update();
 }
 
-function updateGround() {
-  _ground.tilePosition.x -= _game.time.physicsElapsed * _speed / 2;
-}
+// function updateGround() {
+//   _ground.tilePosition.x -= _game.time.physicsElapsed * _speed / 2;
+// }
 
 function updateFrog() {
   // Make frog dive
@@ -446,10 +446,10 @@ function initFeedback() {
     0,
     _feedback,
     {
-      font: '14px ' + TEXT_FONT,
+      font: '20px ' + TEXT_FONT,
       fill: '#fff',
       stroke: '#430',
-      strokeThickness: 4,
+      // strokeThickness: 4,
       align: 'center'
     }
   );
@@ -464,14 +464,14 @@ function initTexts() {
   initFeedback();
 
   _playBgmText = _game.add.text(
-    0,
-    0,
+      10,
+      10,
     TEXT_PLAY_BGM,
     {
-      font: '14px ' + TEXT_FONT,
+      font: '20px ' + TEXT_FONT,
       fill: '#fff',
-      stroke: '#430',
-      strokeThickness: 4,
+      // stroke: '#430',
+      // strokeThickness: 4,
       align: 'center'
     }
   );
@@ -485,11 +485,11 @@ function initTexts() {
     _game.world.height / 4,
     '',
     {
-      font: '14px ' + TEXT_FONT,
+      font: '40px ' + TEXT_FONT,
       fill: '#fff',
       stroke: '#430',
-      strokeThickness: 4,
-      align: 'center'
+      // strokeThickness: 4,
+      // align: 'center'
     }
   );
   _scoreText.anchor.setTo(0.5, 0.5);
@@ -621,7 +621,7 @@ function create() {
   initBackground();
   initPipes();
   initFrog();
-  initGround();
+  // initGround();
   initTexts();
   initClouds();
   initSounds();
@@ -651,9 +651,9 @@ function update() {
     updateFrog2();
   }
 
-  if (!_gameOver) {
-    updateGround();
-  }
+  // if (!_gameOver) {
+  //   updateGround();
+  // }
 }
 
 function render() {
