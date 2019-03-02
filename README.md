@@ -1,2 +1,3 @@
-# FlappySunkey
-A game modified from Flappy Frog aiming to reflect the essence of human being.
+# Journey to West
+
+A Phaser game inspired by the novel Journey to West 
